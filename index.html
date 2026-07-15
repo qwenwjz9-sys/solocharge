@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>SoloCharge — 内向者的个人能量管理工具</title>
+
+<link rel="manifest" href="pwa/manifest.json">
+<meta name="theme-color" content="#0D0F14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SoloCharge">
+<link rel="apple-touch-icon" href="pwa/icon.svg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="内向者的个人能量管理工具 — 安静陪伴，看见自己">
+<meta property="og:title" content="SoloCharge — 内向者的能量管理工具">
+<meta property="og:description" content="帮 i 人感知社交电量，记录耗电/充电事件，3 秒完成一次记录。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="pwa/icon.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SoloCharge — 内向者的能量管理工具">
+<meta name="twitter:description" content="帮 i 人感知社交电量，3 秒记录一次耗电/充电事件。">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C8B882">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icons/icon-192.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0D0F14;--sf:#161820;--el:#1E2028;
+--tp:#E8E6E0;--ts:#9A9890;--tt:#5A5855;
+--bs:rgba(255,255,255,.06);--bd:rgba(255,255,255,.10);
+--cs:#7EC8A4;--ce:#A8D8B8;
+--ds:#C87E7E;--de:#D4A0A0;
+--ac:#C8B882;
+--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:40px;--s8:64px;
+--pm:24px;--cp:20px;
+--r8:8px;--r16:16px;--r24:24px;--rf:9999px;
+--d150:150ms;--d300:300ms;--d600:600ms;--d2s:2000ms;
+--ef:cubic-bezier(.25,.46,.45,.94);
+--ee:cubic-bezier(.22,1,.36,1);
+}
+*,::after,::before{box-sizing:border-box;margin:0;padding:0}
+body{height:100%;background:var(--bg);color:var(--tp);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;user-select:none}
+.n{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;border-radius:inherit}
+.n1{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
+.n2{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E")}
+.n3{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E")}
+.shell{position:relative;width:393px;height:852px;margin:0 auto;background:var(--bg);overflow:hidden;border-radius:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.sb{position:absolute;top:0;left:0;right:0;z-index:100;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pm);font-size:12px;color:var(--ts)}
+.sb .t{font-weight:600;color:var(--tp)}
+.si{display:flex;gap:6px;align-items:center}
+.si svg{width:16px;height:16px;fill:var(--tp)}
+.ca{position:absolute;top:54px;bottom:80px;left:0;right:0;overflow:hidden}
+.pg{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:var(--s8) var(--pm) var(--s6);opacity:0;transform:translateY(12px);transition:opacity var(--d300) var(--ef),transform var(--d300) var(--ef);pointer-events:none}
+.pg.a{opacity:1;transform:translateY(0);pointer-events:auto}
+.pg::-webkit-scrollbar{width:0}
+.tb{position:absolute;bottom:0;left:0;right:0;z-index:100;height:80px;padding-bottom:var(--s5);background:var(--sf);border-top:1px solid var(--bs);display:flex;justify-content:space-around;align-items:center}
+.tb .n{z-index:-1;border-radius:0}
+.ti{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:var(--tt);font-size:10px;letter-spacing:.3px;transition:color var(--d300) var(--ef);-webkit-tap-highlight-color:transparent;padding:8px 20px}
+.ti svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.5;fill:none}
+.ti.a{color:var(--ac)}
+.ti:active{opacity:.7}
+.bc{position:relative;height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);border-radius:var(--r16);margin-bottom:var(--s5);overflow:hidden;transition:background var(--d2s) ease;background:linear-gradient(135deg,#0D1A18 0%,#0D0F14 60%,#121420 100%)}.battery-svg-wrap{position:relative;z-index:2;filter:drop-shadow(0 4px 16px rgba(200,184,130,.2))}.battery-svg-wrap .bf{transition:width .6s cubic-bezier(.25,.46,.45,.94)}@keyframes cg{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes cw{0%,100%{opacity:0}20%,80%{opacity:.3}}
+.bc .n3{z-index:1}
+.bg{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(80px);opacity:.12;transition:all var(--d2s) ease;top:10%;pointer-events:none}
+
+.bnw{position:relative;z-index:2;display:flex;align-items:baseline;gap:var(--s1);justify-content:center}.bn{font-family:"SF Pro Rounded","SF Pro Display",-apple-system,sans-serif;font-size:72px;line-height:80px;font-weight:200;letter-spacing:-2px;transition:color var(--d2s) ease}.bn{color:var(--ac)}
+
+
+.bi{width:48px;height:24px;border:1.5px solid var(--ts);border-radius:4px;padding:2px;position:relative}
+
+
+
+.br{position:relative;z-index:2;font-size:12px;color:var(--tt);margin-top:var(--s3);display:flex;gap:var(--s5);cursor:pointer;transition:opacity var(--d300) var(--ef)}
+.br span{display:flex;align-items:center;gap:4px}
+.br .lbl{color:var(--ts)}
+.br .range-detail{max-height:0;overflow:hidden;transition:max-height var(--d300) var(--ef),opacity var(--d300) var(--ef);opacity:0;font-size:11px;gap:var(--s3)}
+.br .range-detail.o{max-height:60px;opacity:1}
+@keyframes bp{0%,100%{opacity:1}50%{opacity:.6}}
+.bp .battery-svg{animation:bp 2s ease-in-out infinite}
+.fab{position:absolute;bottom:var(--s5);right:var(--pm);width:56px;height:56px;border-radius:50%;background:var(--ac);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,184,130,.25);transition:transform var(--d150) cubic-bezier(.34,1.2,.64,1),box-shadow var(--d300) var(--ef);z-index:10;-webkit-tap-highlight-color:transparent}
+.fab:active{transform:scale(.92)}
+.fab svg{width:24px;height:24px;stroke:#0D0F14;stroke-width:2;fill:none}
+.rs{margin-top:var(--s5)}
+.rst{font-size:17px;font-weight:400;color:var(--tp);margin-bottom:var(--s3);display:flex;justify-content:space-between;align-items:center}
+.rst .count{font-size:12px;font-weight:300;color:var(--tt)}
+.es{text-align:center;padding:var(--s7) 0;color:var(--tt);font-size:15px;font-weight:300}
+.es .q{font-family:"Cormorant Garamond","Georgia",serif;font-style:italic;font-size:18px;color:var(--ts);margin-bottom:var(--s3)}
+.rli{display:flex;align-items:center;padding:var(--s3) 0;border-bottom:1px solid var(--bs);position:relative;transition:background var(--d150) var(--ef);overflow:hidden;min-height:56px}
+.rli:last-child{border-bottom:none}
+.rli .del-btn{position:absolute;right:-60px;top:0;bottom:0;width:60px;background:var(--ds);color:#fff;border:none;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:right var(--d300) var(--ef);border-radius:0}
+.rli.show-del .del-btn{right:0}
+.rli.show-del .ri,.rli.show-del .rv{transform:translateX(-60px)}
+.ri{width:4px;height:24px;border-radius:2px;margin-right:var(--s3);flex-shrink:0;transition:transform var(--d300) var(--ef)}
+.ri.c{background:var(--cs)}.ri.d{background:var(--ds)}
+.ri2{flex:1;min-width:0;transition:transform var(--d300) var(--ef)}
+.rn{font-size:15px;font-weight:400;color:var(--tp)}
+.rm{font-size:12px;font-weight:300;color:var(--tt);margin-top:2px}
+.rv{font-size:17px;font-weight:300;text-align:right;flex-shrink:0;transition:transform var(--d300) var(--ef)}
+.rv.c{color:var(--cs)}.rv.d{color:var(--ds)}
+.rls{max-height:320px;overflow-y:auto}
+.rls::-webkit-scrollbar{width:0}
+.so{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity var(--d300) var(--ef)}
+.so.o{opacity:1;pointer-events:auto}
+.bsh{position:fixed;bottom:0;left:0;right:0;z-index:201;height:65vh;background:var(--sf);border-radius:var(--r24) var(--r24) 0 0;transform:translateY(100%);transition:transform var(--d600) var(--ee);display:flex;flex-direction:column}
+.bsh .n2{z-index:-1;border-radius:var(--r24) var(--r24) 0 0}
+.bsh.o{transform:translateY(0)}
+.shw{display:flex;justify-content:center;padding:var(--s3) 0 var(--s2);flex-shrink:0}
+.shd{width:32px;height:4px;border-radius:2px;background:var(--bd)}
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:0 var(--cp) var(--s3);flex-shrink:0}
+.sht{font-size:24px;font-weight:300;letter-spacing:-.5px;color:var(--tp)}
+.shx{background:none;border:none;cursor:pointer;color:var(--tt);padding:var(--s1)}
+.shx svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.5}
+.shtb{display:flex;gap:var(--s5);padding:0 var(--cp);border-bottom:1px solid var(--bs);flex-shrink:0}
+.shtb-b{background:none;border:none;cursor:pointer;font-size:15px;font-weight:400;color:var(--tt);padding:var(--s2) 0 var(--s3);position:relative;transition:color var(--d300) var(--ef)}
+.shtb-b.a{color:var(--tp)}
+.shtb-b::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:1px;background:var(--ac);transform:scaleX(0);transition:transform var(--d300) var(--ef)}
+.shtb-b.a::after{transform:scaleX(1)}
+.eg{flex:1;overflow-y:auto;padding:var(--cp);display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.eg::-webkit-scrollbar{width:0}
+.ec{position:relative;background:var(--bg);border:1px solid var(--bs);border-radius:var(--r16);padding:var(--s3);min-height:68px;cursor:pointer;display:flex;flex-direction:column;transition:border-color var(--d300) var(--ef),transform var(--d150) cubic-bezier(.34,1.2,.64,1);overflow:hidden}
+.ec .n2{opacity:.6}
+.ec:active{transform:scale(.97)}
+.ec.s.dc{border-color:var(--ds)}
+.ec.s.cc{border-color:var(--cs)}
+.ee{font-size:20px;margin-bottom:var(--s1);position:relative;z-index:1}
+.en{font-size:15px;font-weight:400;color:var(--tp);position:relative;z-index:1}
+.ev{font-size:12px;font-weight:300;margin-top:var(--s1);position:relative;z-index:1}
+.ev.c{color:var(--cs)}.ev.d{color:var(--ds)}
+.eab{display:none;position:relative;z-index:1;margin-top:var(--s2);padding-top:var(--s2);border-top:1px solid var(--bs)}
+.ec.s .eab{display:flex;align-items:center;gap:var(--s2)}
+.adj{font-size:17px;font-weight:300;min-width:32px;text-align:center}
+.adbtn{width:28px;height:28px;border-radius:50%;border:1px solid var(--bd);background:var(--el);color:var(--tp);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px}
+.adbtn:active{background:var(--bd)}
+.cfb{padding:var(--cp);border-top:1px solid var(--bs);flex-shrink:0}
+.cfbtn{width:100%;height:48px;border:none;border-radius:var(--r8);background:var(--ac);color:var(--bg);font-size:15px;font-weight:500;cursor:pointer;transition:opacity var(--d150) var(--ef)}
+.cfbtn:disabled{opacity:.4;cursor:default}
+.cfbtn:active:not(:disabled){opacity:.85}
+.tc{position:fixed;bottom:100px;left:0;right:0;display:flex;justify-content:center;pointer-events:none;z-index:300}
+.to{background:var(--el);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--rf);padding:var(--s3) var(--s5);font-size:15px;font-weight:400;color:var(--tp);max-width:calc(393px - 48px);white-space:nowrap;opacity:0;transform:translateY(20px);transition:opacity var(--d300) var(--ef),transform var(--d300) var(--ef);pointer-events:none}
+.to.v{opacity:1;transform:translateY(0)}
+.to .u{text-decoration:underline;cursor:pointer;margin-left:8px;font-weight:500;pointer-events:auto}
+.ttb{display:flex;gap:var(--s2);margin-bottom:var(--s5);background:var(--sf);border-radius:var(--r8);padding:4px}
+.ttab{flex:1;height:36px;border:none;border-radius:6px;background:transparent;color:var(--tt);font-size:12px;font-weight:400;cursor:pointer;transition:all var(--d300) var(--ef)}
+.ttab.a{background:var(--el);color:var(--tp)}
+.ca2{background:var(--sf);border-radius:var(--r16);padding:var(--cp);height:240px;position:relative;overflow:hidden;margin-bottom:var(--s4);cursor:crosshair}
+.ca2 .n2{z-index:0}
+.wr{background:var(--sf);border-radius:var(--r16);padding:var(--cp);position:relative;overflow:hidden;margin-top:var(--s4)}
+.wr .n2{z-index:0}
+.wh{font-size:17px;font-weight:400;color:var(--tp);margin-bottom:var(--s3);position:relative;z-index:1}
+.ws{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);position:relative;z-index:1}
+.wi{background:var(--bg);border-radius:var(--r8);padding:var(--s3)}
+.wl{font-size:12px;color:var(--tt);margin-bottom:var(--s1)}
+.wv{font-size:17px;font-weight:300}
+.wv.h{color:var(--ac)}
+.wsm{position:relative;z-index:1;margin-top:var(--s4);padding:var(--s3);background:var(--bg);border-radius:var(--r8);font-size:15px;font-weight:300;line-height:22px;color:var(--ts);font-style:italic}
+.sg{margin-bottom:var(--s5)}
+.sgt{font-size:12px;color:var(--tt);letter-spacing:.5px;margin-bottom:var(--s2);padding-left:var(--s1)}
+.si2{background:var(--sf);border-radius:var(--r8);padding:var(--s4);display:flex;align-items:center;justify-content:space-between;margin-bottom:1px;position:relative;overflow:hidden}
+.si2 .n2{z-index:0;border-radius:inherit}
+.si2:first-child{border-radius:var(--r8) var(--r8) 1px 1px}
+.si2:last-child{border-radius:1px 1px var(--r8) var(--r8);margin-bottom:0}
+.si2:only-child{border-radius:var(--r8)}
+.sl{font-size:15px;font-weight:400;color:var(--tp);position:relative;z-index:1}
+.sd{font-size:12px;color:var(--tt);margin-top:2px;position:relative;z-index:1}
+.sr{position:relative;z-index:1;display:flex;align-items:center}
+.tg{width:44px;height:24px;border-radius:12px;background:var(--el);border:1px solid var(--bd);cursor:pointer;position:relative;transition:all var(--d300) var(--ef);-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.tg.o{background:var(--ac);border-color:var(--ac)}
+.tk{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--tp);transition:transform var(--d300) cubic-bezier(.34,1.2,.64,1)}
+.tg.o .tk{transform:translateX(20px);background:var(--bg)}
+.st{display:flex;align-items:center;gap:var(--s2)}
+.stb{width:28px;height:28px;border-radius:50%;border:1px solid var(--bd);background:transparent;color:var(--tp);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+.stb:active{background:var(--bd)}
+.stv{font-size:17px;font-weight:300;color:var(--tp);min-width:32px;text-align:center}
+.dgr{background:none;border:1px solid rgba(200,126,126,.3);border-radius:var(--r8);padding:var(--s3) var(--s4);color:var(--ds);font-size:15px;cursor:pointer;width:100%;margin-top:var(--s3)}
+.dgr:active{background:rgba(200,126,126,.1)}
+.cgl{stroke:var(--bs);stroke-width:.5}
+.caf{fill:url(#cg);opacity:.15}
+.cl{fill:none;stroke:var(--ac);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cd{fill:var(--ac);cursor:pointer;transition:r var(--d150) var(--ef)}
+.cd:hover{r:5}
+.cb2{fill:var(--ac);opacity:.7;cursor:pointer;transition:opacity var(--d150) var(--ef)}
+.cb2:hover{opacity:1}
+.clb{fill:var(--tt);font-size:9px;text-anchor:middle}
+.chart-tooltip{position:absolute;background:var(--el);border:1px solid var(--bd);border-radius:var(--r8);padding:8px 12px;font-size:12px;color:var(--tp);pointer-events:none;opacity:0;transition:opacity var(--d150) var(--ef);z-index:10;white-space:nowrap}
+.chart-tooltip.v{opacity:1}
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity var(--d300) var(--ef)}
+.modal-overlay.o{opacity:1;pointer-events:auto}
+.modal{background:var(--sf);border-radius:var(--r16);padding:var(--s5);width:320px;position:relative;overflow:hidden;transform:scale(.95);transition:transform var(--d300) var(--ee)}
+.modal-overlay.o .modal{transform:scale(1)}
+.modal .n2{z-index:-1}
+.mh{font-size:20px;font-weight:300;color:var(--tp);margin-bottom:var(--s4)}
+.mf{display:flex;flex-direction:column;gap:var(--s3)}
+.ml{font-size:12px;color:var(--tt);margin-bottom:var(--s1)}
+.mi{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r8);padding:var(--s3);color:var(--tp);font-size:15px;font-family:inherit;outline:none;width:100%}
+.mi:focus{border-color:var(--ac)}
+.mr{display:flex;gap:var(--s2);margin-top:var(--s3)}
+.mb{flex:1;height:40px;border:none;border-radius:var(--r8);font-size:14px;cursor:pointer}
+.mb.s{background:var(--el);color:var(--ts)}.mb.p{background:var(--ac);color:var(--bg)}
+.cust-label{font-size:10px;color:var(--tt);position:absolute;top:4px;right:6px;z-index:1}
+.mtab{display:flex;gap:var(--s2);margin-bottom:var(--s2)}
+.mtab-b{flex:1;padding:var(--s2);border:1px solid var(--bd);border-radius:var(--r8);background:transparent;color:var(--tt);font-size:13px;cursor:pointer;transition:all var(--d150) var(--ef)}
+.mtab-b.a{border-color:var(--ac);color:var(--tp);background:var(--el)}
+.imp-exp{display:flex;gap:var(--s2);margin-top:var(--s2)}
+.imp-exp button{flex:1;padding:var(--s2);border:1px solid var(--bd);border-radius:var(--r8);background:transparent;color:var(--ts);font-size:11px;cursor:pointer}
+.imp-exp button:active{background:var(--bs)}
+.cust-edit{position:absolute;top:6px;right:6px;z-index:2;display:flex;gap:4px;opacity:0;transition:opacity var(--d150) var(--ef)}
+.ec:hover .cust-edit,.ec.s .cust-edit{opacity:1}
+.cust-edit button{width:20px;height:20px;border-radius:50%;border:1px solid var(--bd);background:var(--el);color:var(--ts);cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<div class="shell" id="app"><div class="n n1"></div>
+<div class="sb"><span class="t" id="st">9:41</span><div class="si"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="10" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 6.5h1.5A1.5 1.5 0 0115 8v0a1.5 1.5 0 01-1.5 1.5H12"/></svg><svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.2"/></svg></div></div>
+<div class="ca">
+<div class="pg a" id="pH"><div class="bc" id="bC"><div class="n3"></div><div class="bg" id="bG"></div><div class="battery-svg-wrap" id="bSw"><svg viewBox="0 0 96 48" width="96" height="48" class="battery-svg"><defs><linearGradient id="bg3d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.08)"/><stop offset="100%" stop-color="rgba(0,0,0,0.08)"/></linearGradient><linearGradient id="fg3d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.35)"/><stop offset="100%" stop-color="rgba(0,0,0,0.05)"/></linearGradient><clipPath id="bClip"><rect x="4" y="5" width="77" height="38" rx="5"/></clipPath></defs><path d="M84 16h6v16h-6" fill="none" stroke="var(--ts)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="2" y="2" width="82" height="44" rx="7" fill="var(--bg)" stroke="var(--ts)" stroke-width="1.5"/><rect x="3" y="3" width="80" height="42" rx="6" fill="url(#bg3d)"/><g clip-path="url(#bClip)"><rect class="bf" id="bF" x="4" y="5" width="54" height="38" rx="5" fill="var(--ac)"/><rect class="bf" x="4" y="5" width="54" height="38" rx="5" fill="url(#fg3d)"/><rect class="bf" x="4" y="5" width="54" height="38" rx="5" id="bChargeGlow" fill="var(--ac)" opacity="0"/></g><rect x="4" y="5" width="77" height="13" rx="5" fill="rgba(255,255,255,0.05)"/><line x1="7" y1="10" x2="78" y2="10" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/></svg></div><div class="bnw"><span class="bn" id="bN">72</span><span class="bpc">%</span></div><div class="br" id="bR"><span class="range-detail"><span><span class="lbl">H</span> <span id="hT">72</span>%</span><span><span class="lbl">L</span> <span id="lT">55</span>%</span></span></div></div>
+<div class="rs"><div class="rst">今日记录 <span class="count" id="rc">0 条</span></div><div class="rls" id="rL"><div class="es" id="eS"><div class="q">"安静是另一种力量。"</div><div>今天还没有记录</div></div></div></div>
+<button class="fab" id="fB"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
+<div class="pg" id="pT"><div class="ttb" id="tTB"><button class="ttab a" data-p="today">今日</button><button class="ttab" data-p="week">本周</button></div>
+<div class="ca2" id="cA"><div class="n2"></div><div class="chart-tooltip" id="cTT"></div><svg id="cSvg" viewBox="0 0 320 180" style="width:100%;height:100%"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C8B882" stop-opacity=".3"/><stop offset="100%" stop-color="#C8B882" stop-opacity="0"/></linearGradient></defs></svg></div>
+<div class="wr" id="wR"><div class="n2"></div><div class="wh">本周能量报告</div><div class="ws"><div class="wi"><div class="wl">平均电量</div><div class="wv h" id="aB">—</div></div><div class="wi"><div class="wl">记录次数</div><div class="wv" id="rC">—</div></div><div class="wi"><div class="wl">最耗电</div><div class="wv" id="wD">—</div></div><div class="wi"><div class="wl">最充电</div><div class="wv" id="wC">—</div></div></div><div class="wsm" id="wS">暂无本周数据</div></div></div>
+<div class="pg" id="pS"><div class="sg"><div class="sgt">电量设置</div><div class="si2"><div><div class="sl">初始电量</div><div class="sd">每日重置起点 · 范围 50-90</div></div><div class="sr"><div class="st"><button class="stb" id="iD">−</button><span class="stv" id="iV">70</span><button class="stb" id="iI">+</button></div></div><div class="n2"></div></div></div>
+<div class="sg"><div class="sgt">通知</div><div class="si2"><div><div class="sl">低电量提醒</div><div class="sd">电量首次低于 30% 时推送 · 每日限 1 次</div></div><div class="sr"><div class="tg o" id="lTg"><div class="tk"></div></div></div><div class="n2"></div></div>
+<div class="si2"><div><div class="sl">周报推送</div><div class="sd">每周一早上 9:00</div></div><div class="sr"><div class="tg o" id="wTg"><div class="tk"></div></div></div><div class="n2"></div></div></div>
+<div class="sg"><div class="sgt">数据</div><div class="si2"><div><div class="sl">重置时间</div><div class="sd">每日电量重置时刻 · 可选 00:00 或 06:00</div></div><div class="sr"><div class="st"><button class="stb" id="rD">−</button><span class="stv" id="rV">00:00</span><button class="stb" id="rI">+</button></div></div><div class="n2"></div></div>
+<div class="si2"><div><div class="sl">导出数据</div><div class="sd">导出为 CSV 格式</div></div><div class="sr"><button style="background:var(--el);border:1px solid var(--bd);border-radius:var(--r8);padding:6px 12px;color:var(--ts);font-size:12px;cursor:pointer" id="eBtn">导出</button></div><div class="n2"></div></div></div>
+<button class="dgr" id="cBtn">清除所有数据</button></div></div>
+<div class="tb"><div class="n n2" style="inset:0;border-radius:0"></div>
+<button class="ti a" data-t="h"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="7" y="12" width="4" height="6" rx="1" fill="currentColor" stroke="none"/><rect x="13" y="10" width="4" height="8" rx="1" fill="currentColor" stroke="none"/><path d="M5 9L12 4L19 9" stroke="currentColor" fill="none" stroke-width="1.5"/></svg><span>首页</span></button>
+<button class="ti" data-t="t"><svg viewBox="0 0 24 24"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17,6 23,6 23,12" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>趋势</span></button>
+<button class="ti" data-t="s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke="currentColor" fill="none" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" fill="none" stroke-width="1.5"/></svg><span>设置</span></button></div>
+<div class="so" id="sO"></div>
+<div class="bsh" id="bSh"><div class="n2"></div><div class="shw"><div class="shd"></div></div><div class="shdr"><div class="sht">记录</div><button class="shx" id="sX"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="shtb"><button class="shtb-b a" data-ty="d"><svg viewBox="0 0 20 20" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M11 2l-5 9h3l-1 7 6-9h-3z" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linejoin="round"/></svg>耗电</button><button class="shtb-b" data-ty="c"><svg viewBox="0 0 20 20" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><rect x="2" y="6" width="14" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/><path d="M17 8.5h.5a1 1 0 010 3h-.5" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="4" y="8" width="5" height="4" rx=".5" fill="currentColor" stroke="none"/></svg>充电</button></div><div class="eg" id="eG"></div><div class="cfb"><button class="cfbtn" id="cF" disabled>确认</button></div></div>
+<div class="tc"><div class="to" id="tO"></div></div>
+<div class="modal-overlay" id="mO"><div class="modal"><div class="n2"></div><div class="mh" id="mT">添加自定义事件</div><div class="mf"><div><div class="ml">事件名称（最多 10 字）</div><input class="mi" id="mN" maxlength="10" placeholder="输入名称..."></div><div><div class="ml">类型</div><div class="mtab"><button class="mtab-b a" data-mt="d"><svg viewBox="0 0 20 20" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><path d="M11 2l-5 9h3l-1 7 6-9h-3z" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linejoin="round"/></svg>耗电</button><button class="mtab-b" data-mt="c"><svg viewBox="0 0 20 20" style="width:16px;height:16px;vertical-align:middle;margin-right:4px"><rect x="2" y="6" width="14" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/><path d="M17 8.5h.5a1 1 0 010 3h-.5" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="4" y="8" width="5" height="4" rx=".5" fill="currentColor" stroke="none"/></svg>充电</button></div></div><div><div class="ml">默认数值</div><div class="st"><button class="stb" id="mVd">−5</button><span class="stv" id="mV">20</span><button class="stb" id="mVi">+5</button></div></div></div><div class="mr"><button class="mb s" id="mC">取消</button><button class="mb p" id="mK">确认</button></div></div></div></div>
+<script>
+"use strict";
+const S={battery:72,initBattery:70,highToday:72,lowToday:55,records:[],customEvents:[],selectedEvent:null,selectedAdjust:0,sheetTab:'d',trendPeriod:'today',lowBatteryAlert:true,weeklyReportOn:true,resetTime:0,alertedToday:false,lastResetDate:null,nextCustId:1};
+const PRESET={d:[{emoji:'🎉',name:'社交聚会',value:-20},{emoji:'🎯',name:'正式面试',value:-30},{emoji:'💼',name:'工作会议',value:-15},{emoji:'📞',name:'电话沟通',value:-10},{emoji:'😶',name:'陌生人交流',value:-15},{emoji:'🔊',name:'嘈杂环境',value:-10}],c:[{emoji:'🧘',name:'独处发呆',value:25},{emoji:'🌿',name:'去公园散步',value:20},{emoji:'📖',name:'看书',value:15},{emoji:'🎵',name:'听音乐',value:10},{emoji:'☕',name:'喝咖啡/茶',value:10},{emoji:'😴',name:'睡觉/小憩',value:30}]};
+const I={p:'🎉',b:'🎯',c:'💼',ph:'📞',ch:'😶',no:'🔊',me:'🧘',l:'🌿',bk:'📖',m:'🎵',co:'☕',sl:'😴',pl:'📌',lg:'⚡'};
+function gI(n){const m={'社交聚会':I.p,'正式面试':I.b,'工作会议':I.c,'电话沟通':I.ph,'陌生人交流':I.ch,'嘈杂环境':I.no,'独处发呆':I.me,'去公园散步':I.l,'看书':I.bk,'听音乐':I.m,'喝咖啡/茶':I.co,'睡觉/小憩':I.sl};return m[n]||I.pl}
+const $=id=>document.getElementById(id);
+const LS_KEY='solocharge_data';
+function save(){try{const d={records:S.records.filter(r=>{const dd=new Date(r.time);const t=new Date;return dd.getDate()===t.getDate()&&dd.getMonth()===t.getMonth()&&dd.getFullYear()===t.getFullYear()}),customEvents:S.customEvents,initBattery:S.initBattery,battery:S.battery,highToday:S.highToday,lowToday:S.lowToday,lowBatteryAlert:S.lowBatteryAlert,weeklyReportOn:S.weeklyReportOn,resetTime:S.resetTime,alertedToday:S.alertedToday,lastResetDate:S.lastResetDate,nextCustId:S.nextCustId};localStorage.setItem(LS_KEY,JSON.stringify(d))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(LS_KEY));if(!d)return;S.initBattery=d.initBattery??70;S.battery=d.battery??S.initBattery;S.highToday=d.highToday??S.battery;S.lowToday=d.lowToday??S.battery;S.lowBatteryAlert=d.lowBatteryAlert!==false;S.weeklyReportOn=d.weeklyReportOn!==false;S.resetTime=d.resetTime??0;S.alertedToday=!!d.alertedToday;S.lastResetDate=d.lastResetDate??null;S.nextCustId=d.nextCustId??1;if(d.customEvents)S.customEvents=d.customEvents.map(e=>({...e}));if(d.records){S.records=d.records.map(r=>({...r,time:new Date(r.time)}))}}catch(e){}}
+function checkReset(){const now=new Date;const today=now.getDate()+'-'+now.getMonth()+'-'+now.getFullYear();if(S.lastResetDate!==today){const targetH=S.resetTime===0?0:6;const resetH=now.getHours();if(resetH>=targetH){S.battery=S.initBattery;S.highToday=S.initBattery;S.lowToday=S.initBattery;S.alertedToday=false;S.lastResetDate=today;save()}}}
+function getEvents(ty){const p=PRESET[ty]||[];const c=S.customEvents.filter(e=>e.type===ty);return[...c,...p]}
+function getTodayRecords(){return S.records.filter(r=>{const d=new Date(r.time);const t=new Date;return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear()})}
+function getWeekRecords(){const now=new Date;const ms=[];for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()-i);ms.push(d)}return ms.map(day=>{const end=new Date(day);end.setHours(23,59,59,999);const start=new Date(day);start.setHours(0,0,0,0);const r=S.records.filter(rec=>{const t=new Date(rec.time);return t>=start&&t<=end});return{date:day,records:r,count:r.length,avg:r.length?Math.round(r.reduce((s,rec)=>s+rec.value,0)/r.length):0,battery:0}})}
+function uB(v,a){const c=Math.max(0,Math.min(100,v));const o=S.battery;S.battery=c;const cur=parseInt($('bN').textContent);if(a&&cur!==c){const d=600,s=performance.now();function fn(t){const p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);$('bN').textContent=Math.round(cur+(c-cur)*e);if(p<1)requestAnimationFrame(fn)}requestAnimationFrame(fn)}else $('bN').textContent=c;const bf=document.querySelectorAll('.bf');const bw=c/100*77;bf.forEach(el=>{el.setAttribute('width',Math.max(0,bw))});const fc=c<=30?'var(--ds)':c<=60?'var(--ac)':'var(--cs)';bf.forEach(el=>{el.style.fill=fc});if(c>o){try{const cg=document.getElementById('bChargeGlow');if(cg){cg.style.opacity='.3';cg.style.transition='opacity .6s ease-out';setTimeout(()=>{cg.style.opacity='0'},600)}}catch(e){}}$('bC').style.background=c<=30?'linear-gradient(135deg,#1A0D0D 0%,#0D0F14 60%,#140D12 100%)':c<=60?'linear-gradient(135deg,#1A1508 0%,#0D0F14 60%,#141218 100%)':'linear-gradient(135deg,#0D1A18 0%,#0D0F14 60%,#121420 100%)';$('bG').style.background=(c<=30?'rgba(200,126,126,':c<=60?'rgba(200,184,130,':'rgba(126,200,164,')+'0.12)';$('bN').style.color=c<=30?'var(--ds)':c<=60?'var(--ac)':'var(--cs)';try{$('bSw').style.filter='drop-shadow(0 4px 16px '+(c<=30?'rgba(200,126,126,0.25)':c<=60?'rgba(200,184,130,0.25)':'rgba(126,200,164,0.25)')+')'}catch(e){};$('bC').classList.toggle('bp',c<=30&&c>0);if(c>S.highToday){S.highToday=c;$('hT').textContent=c}if(c<S.lowToday||S.lowToday===null){S.lowToday=c;$('lT').textContent=c}save()}
+function rRL(){const r=getTodayRecords();$('rc').textContent=r.length+' 条';$('rL').innerHTML='';if(r.length===0){$('rL').innerHTML='<div class="es" id="eS"><div class="q">"安静是另一种力量。"</div><div>今天还没有记录</div></div>';return}const display=r.length>20?r.slice(r.length-20):[...r];display.reverse();display.forEach((rec,i)=>{const realIdx=S.records.indexOf(rec);const isC=rec.value>0;const d=document.createElement('div');d.className='rli';d.innerHTML='<div class="ri '+(isC?'c':'d')+'"></div><div class="ri2"><div class="rn">'+gI(rec.name)+'</div><div class="rm">'+new Date(rec.time).getHours().toString().padStart(2,'0')+':'+new Date(rec.time).getMinutes().toString().padStart(2,'0')+'</div></div><div class="rv '+(isC?'c':'d')+'">'+(rec.value>0?'+':'')+rec.value+'</div><button class="del-btn" data-idx="'+realIdx+'">删除</button>';d.addEventListener('click',function(e){if(e.target.closest('.del-btn'))return;this.classList.toggle('show-del')});const db=d.querySelector('.del-btn');db.addEventListener('click',function(e){e.stopPropagation();const idx=parseInt(this.dataset.idx);const rec2=S.records[idx];S.records.splice(idx,1);uB(S.battery-rec2.value);rRL();updateTrends();showToast('已删除「'+rec2.name+'」','撤销',()=>{S.records.splice(idx,0,rec2);uB(S.battery+rec2.value);rRL();updateTrends();showToast('已恢复「'+rec2.name+'」')})});$('rL').appendChild(d)});if(r.length>20){const m=document.createElement('div');m.style.cssText='text-align:center;padding:12px;color:var(--tt);font-size:12px';m.textContent='还有 '+(r.length-20)+' 条较早记录';$('rL').appendChild(m)}}
+let tt=null;function showToast(t,act,cb){clearTimeout(tt);const to=$('tO');to.innerHTML=t+(act?'<span class="u" id="tU">'+act+'</span>':'');to.classList.add('v');if(act&&cb){const u=document.getElementById('tU');if(u)u.addEventListener('click',function(e){e.stopPropagation();cb();to.classList.remove('v');clearTimeout(tt)})}tt=setTimeout(()=>to.classList.remove('v'),5000)}
+function oS(){$('sO').classList.add('o');$('bSh').classList.add('o');rE()}
+function cS(){$('sO').classList.remove('o');$('bSh').classList.remove('o');S.selectedEvent=null;S.selectedAdjust=0;$('cF').disabled=true}
+function rE(){$('eG').innerHTML='';const ty=S.sheetTab==='d'?'d':'c';const list=getEvents(ty);list.forEach((evt,i)=>{const isC=evt.value>0;const card=document.createElement('div');card.className='ec';card.classList.add(isC?'cc':'dc');card.dataset.eidx=i;card.innerHTML='<div class="n2"></div>'+(evt.isCustom?'<div class="cust-label">自定义</div>':'')+'<div class="ee">'+gI(evt.name)+'</div><div class="en">'+evt.name+'</div><div class="ev '+(isC?'c':'d')+'">'+(evt.value>0?'+':'')+evt.value+'</div><div class="eab"><button class="adbtn" data-adj="-5">−5</button><span class="adj" data-base="'+evt.value+'">'+(evt.value>0?'+':'')+evt.value+'</span><button class="adbtn" data-adj="+5">+5</button></div>';if(evt.isCustom){const ed=document.createElement('div');ed.className='cust-edit';ed.innerHTML='<button data-act="edit" title="编辑">✎</button><button data-act="del" title="删除">✕</button>';card.appendChild(ed);ed.querySelector('[data-act="edit"]').addEventListener('click',e=>{e.stopPropagation();openCustModal(evt)});ed.querySelector('[data-act="del"]').addEventListener('click',e=>{e.stopPropagation();const idx=S.customEvents.indexOf(evt);if(idx>=0){S.customEvents.splice(idx,1);save();rE()}})}card.addEventListener('click',function(e){if(e.target.closest('.adbtn')||e.target.closest('.cust-edit'))return;$('eG').querySelectorAll('.ec').forEach(c=>c.classList.remove('s'));this.classList.add('s');const allEvts=getEvents(ty);S.selectedEvent=allEvts[parseInt(this.dataset.eidx)];S.selectedAdjust=0;$('cF').disabled=false;this.querySelector('.adj').textContent=(S.selectedEvent.value>0?'+':'')+S.selectedEvent.value});$('eG').appendChild(card)});const addCard=document.createElement('div');addCard.className='ec';addCard.style.cssText='justify-content:center;align-items:center;min-height:68px;border-style:dashed;cursor:pointer';addCard.innerHTML='<div style="font-size:24px;opacity:.6;margin-bottom:4px">+</div><div style="font-size:12px;color:var(--tt)">添加自定义</div>';addCard.addEventListener('click',e=>{e.stopPropagation();openCustModal()});$('eG').appendChild(addCard);$('eG').querySelectorAll('.adbtn').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();const card=this.closest('.ec');const adjSpan=card.querySelector('.adj');const base=parseInt(adjSpan.dataset.base);const delta=parseInt(this.dataset.adj);const ev=getEvents(S.sheetTab==='d'?'d':'c')[parseInt(card.dataset.eidx)];const na=Math.max(-20,Math.min(20,(S.selectedEvent===ev?S.selectedAdjust:0)+delta));S.selectedAdjust=na;S.selectedEvent=ev;adjSpan.textContent=(base+na>0?'+':'')+(base+na);$('cF').disabled=false})})}
+function cR(){if(!S.selectedEvent)return;const fv=S.selectedEvent.value+S.selectedAdjust;const c=Math.max(0,Math.min(100,S.battery+fv));const _e=S.selectedEvent;S.records.push({name:_e.name,value:fv,time:new Date()});save();rRL();uB(c);cS();updateTrends();showToast('已记录 '+(fv>0?'+':'')+fv);if(c<=30&&S.lowBatteryAlert&&!S.alertedToday){S.alertedToday=true;save();setTimeout(()=>showToast(['电量有点低了，要不要给自己安排点独处时间？','今天消耗不少，找个安静的地方待一会儿吧。','电量预警，记得给自己充充电。'][Math.floor(Math.random()*3)]),2500)}}
+let cmEvt=null;function openCustModal(evt){cmEvt=evt||null;const mo=$('mO');$('mT').textContent=evt?'编辑自定义事件':'添加自定义事件';$('mN').value=evt?evt.name:'';$('mV').textContent=evt?Math.abs(evt.value):20;const d=document.querySelector('[data-mt="d"]');const c=document.querySelector('[data-mt="c"]');if(evt){if(evt.value<0){d.classList.add('a');c.classList.remove('a')}else{c.classList.add('a');d.classList.remove('a')}}else{d.classList.add('a');c.classList.remove('a')}mo.classList.add('o')}
+function closeCustModal(){cmEvt=null;$('mO').classList.remove('o')}
+function confirmCustModal(){const name=$('mN').value.trim();if(!name||name.length>10){showToast('名称不能为空且不超过 10 字');return}if(S.customEvents.length>=10&&!cmEvt){showToast('最多支持 10 个自定义事件');return}const isDrain=document.querySelector('[data-mt="d"].a')!==null;const displayVal=parseInt($('mV').textContent)||20;const value=isDrain?-displayVal:displayVal;const existingName=S.customEvents.find(e=>e.name===name&&e!==cmEvt);if(existingName&&!cmEvt){showToast('已存在同名事件');return}if(cmEvt){cmEvt.name=name;cmEvt.value=value;cmEvt.type=isDrain?'d':'c'}else{S.customEvents.push({name,value,type:isDrain?'d':'c',isCustom:true,id:S.nextCustId++})}save();closeCustModal();rE()}
+function sT(t){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('a'));document.querySelectorAll('.ti').forEach(x=>x.classList.remove('a'));const map={h:'pH',t:'pT',s:'pS'};$(map[t]).classList.add('a');document.querySelector('.ti[data-t="'+t+'"]').classList.add('a')}
+function updateTrends(){renderChart(S.trendPeriod);renderReport()}
+function renderChart(p){const svg=$('cSvg');svg.innerHTML='<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C8B882" stop-opacity=".3"/><stop offset="100%" stop-color="#C8B882" stop-opacity="0"/></linearGradient></defs>';const W=320,H=180,pt=10,pl=30,cw=260,ch=145,tt=$('cTT');for(let i=0;i<=4;i++){const y=pt+ch*i/4;const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',pl);l.setAttribute('x2',W-10);l.setAttribute('y1',y);l.setAttribute('y2',y);l.classList.add('cgl');svg.appendChild(l);const lb=document.createElementNS('http://www.w3.org/2000/svg','text');lb.setAttribute('x',pl-4);lb.setAttribute('y',y+3);lb.classList.add('clb');lb.textContent=100-i*25;svg.appendChild(lb)}
+if(p==='today'){const pts=[],hours=['8a','10a','12p','2p','4p','6p','8p'];const todayR=getTodayRecords();const vals=[];for(let i=0;i<hours.length;i++){const h=8+i*2;const filterR=todayR.filter(r=>{const t=new Date(r.time);let hour=t.getHours();if(hour===h||(i===0&&hour<10)||(i===hours.length-1&&hour>=18))return true;return i>0&&hour>=(8+(i-1)*2)&&hour<(8+i*2)});const totalDelta=filterR.reduce((s,r)=>s+r.value,0);vals.push(Math.max(0,Math.min(100,S.battery-totalDelta)))}pts.push({x:pl,y:pt+ch*(1-vals[0]/100)});vals.forEach((v,i)=>{pts.push({x:pl+cw*i/(vals.length-1),y:pt+ch*(1-v/100)})});pts.push({x:pl+cw,y:pt+ch*(1-vals[vals.length-1]/100)});let ad='M '+pts[0].x+' '+(pt+ch)+' L';pts.forEach(p=>{ad+=' '+p.x+' '+p.y});ad+=' L '+pts[pts.length-1].x+' '+(pt+ch)+' Z';const a=document.createElementNS('http://www.w3.org/2000/svg','path');a.setAttribute('d',ad);a.classList.add('caf');svg.appendChild(a);let ld='M '+pts[0].x+' '+pts[0].y;for(let i=1;i<pts.length;i++)ld+=' L '+pts[i].x+' '+pts[i].y;const l=document.createElementNS('http://www.w3.org/2000/svg','path');l.setAttribute('d',ld);l.classList.add('cl');svg.appendChild(l);pts.forEach((p,i)=>{if(i===0||i===pts.length-1)return;const dt=document.createElementNS('http://www.w3.org/2000/svg','circle');dt.setAttribute('cx',p.x);dt.setAttribute('cy',p.y);dt.classList.add('cd');dt.setAttribute('r','3.5');const h=hours[i-1];const v=vals[i-1];const hourR=todayR.filter(r=>{const t=new Date(r.time);const rh=t.getHours();return rh>=8+(i-2)*2&&rh<8+(i-1)*2});dt.addEventListener('click',()=>{if(hourR.length===0){tt.innerHTML='<span style="color:var(--ts)">'+h+': 无记录</span>';tt.classList.add('v');setTimeout(()=>tt.classList.remove('v'),2000);return}tt.innerHTML=hourR.map(r=>'<span style="color:'+(r.value>0?'var(--cs)':'var(--ds)')+'">'+(r.value>0?'+':'')+r.value+'</span> '+r.name).join('<br>');tt.style.left=p.x-60+'px';tt.style.top=(p.y-50)+'px';tt.classList.add('v');setTimeout(()=>tt.classList.remove('v'),2500)});svg.appendChild(dt)});hours.forEach((h,i)=>{const lb=document.createElementNS('http://www.w3.org/2000/svg','text');lb.setAttribute('x',pl+cw*i/(hours.length-1));lb.setAttribute('y',pt+ch+14);lb.classList.add('clb');lb.textContent=h;svg.appendChild(lb)})}else if(p==='week'){const data=getWeekRecords();const bw=cw/data.length*0.6,gap=cw/data.length;data.forEach((d,i)=>{const x=pl+gap*i+gap/2-bw/2;const batteryAtDay=S.battery;const bh=ch*Math.abs(d.avg)/100||0;const y=pt+ch-bh;const bar=document.createElementNS('http://www.w3.org/2000/svg','rect');bar.setAttribute('x',x);bar.setAttribute('y',pt+ch);bar.setAttribute('width',bw);bar.setAttribute('height','0');bar.classList.add('cb2');svg.appendChild(bar);setTimeout(()=>{bar.setAttribute('y',y);bar.setAttribute('height',bh)},i*80);bar.addEventListener('click',()=>{const dayR=d.records;if(dayR.length===0){tt.innerHTML='<span style="color:var(--ts)">'+d.date.getDate()+'日: 暂无记录</span>';tt.classList.add('v');setTimeout(()=>tt.classList.remove('v'),2000);return}tt.innerHTML=dayR.map(r=>'<span style="color:'+(r.value>0?'var(--cs)':'var(--ds)')+'">'+(r.value>0?'+':'')+r.value+'</span> '+r.name).join('<br>');tt.style.left=Math.min(x,250)+'px';tt.style.top='60px';tt.classList.add('v');setTimeout(()=>tt.classList.remove('v'),2500)});const lb=document.createElementNS('http://www.w3.org/2000/svg','text');lb.setAttribute('x',pl+gap*i+gap/2);lb.setAttribute('y',pt+ch+14);lb.classList.add('clb');const dayStr=d.date.getDate()+'/'+(d.date.getMonth()+1);lb.textContent=dayStr;svg.appendChild(lb)})}}
+
+function renderReport(){const now=new Date;const weekR=[];for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);weekR.push(d)}const allWeekRecs=weekR.flatMap(day=>{const end=new Date(day);end.setHours(23,59,59,999);const start=new Date(day);start.setHours(0,0,0,0);return S.records.filter(r=>{const t=new Date(r.time);return t>=start&&t<=end})});if(allWeekRecs.length===0){$('aB').textContent='—';$('rC').textContent='—';$('wD').textContent='—';$('wC').textContent='—';$('wS').textContent='暂无本周数据';return}$('rC').textContent=allWeekRecs.length+' 次';const drainEvts=allWeekRecs.filter(r=>r.value<0);const chargeEvts=allWeekRecs.filter(r=>r.value>0);const drainMap={};drainEvts.forEach(r=>{drainMap[r.name]=(drainMap[r.name]||0)+r.value});const topDrain=Object.entries(drainMap).sort((a,b)=>a[1]-b[1])[0];const chargeMap={};chargeEvts.forEach(r=>{chargeMap[r.name]=(chargeMap[r.name]||0)+r.value});const topCharge=Object.entries(chargeMap).sort((a,b)=>b[1]-a[1])[0];$('wD').textContent=topDrain?topDrain[0]:'—';$('wC').textContent=topCharge?topCharge[0]:'—';const totalDelta=allWeekRecs.reduce((s,r)=>s+r.value,0);const startBattery=S.battery-totalDelta;const avgB=Math.round((startBattery+S.battery)/2);$('aB').textContent=avgB+'%';const weekCompare=avgB>=50?'比上周高了':'比上周低了';$('wS').textContent='上周你共记录了 '+allWeekRecs.length+' 次。最耗电的是「'+(topDrain?topDrain[0]:'无')+'」，最充电的是「'+(topCharge?topCharge[0]:'无')+'」。平均电量 '+avgB+'%，'+weekCompare+' 一些。'}
+function exportCSV(){const header='时间,事件名称,数值变化,类型\n';const rows=S.records.map(r=>{const d=new Date(r.time);const timeStr=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');const val=r.value>0?'+'+r.value:String(r.value);const type=r.value>0?'充电':'耗电';return timeStr+','+r.name+','+val+','+type}).join('\n');const blob=new Blob(['\uFEFF'+header+rows],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SoloCharge_数据导出_'+new Date().toISOString().slice(0,10)+'.csv';a.click();URL.revokeObjectURL(a.href);showToast('数据已导出为 CSV')}
+function init(){load();checkReset();const now=new Date;$('st').textContent=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');setInterval(()=>{const n=new Date;$('st').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');checkReset()},60000);uB(S.battery,false);rRL();renderChart('today');renderReport();$('iV').textContent=S.initBattery;$('rV').textContent=S.resetTime===0?'00:00':'06:00';if(!S.lowBatteryAlert)$('lTg').classList.remove('o');if(!S.weeklyReportOn)$('wTg').classList.remove('o');
+document.querySelectorAll('.ti').forEach(item=>{item.addEventListener('click',()=>sT(item.dataset.t))});$('fB').addEventListener('click',oS);$('sO').addEventListener('click',cS);$('sX').addEventListener('click',cS);
+document.querySelectorAll('.shtb-b').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.shtb-b').forEach(t=>t.classList.remove('a'));tab.classList.add('a');S.sheetTab=tab.dataset.ty;S.selectedEvent=null;S.selectedAdjust=0;$('cF').disabled=true;rE()})});$('cF').addEventListener('click',cR);
+document.querySelectorAll('.ttab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('a'));tab.classList.add('a');S.trendPeriod=tab.dataset.p;renderChart(S.trendPeriod)})});
+$('iD').addEventListener('click',()=>{S.initBattery=Math.max(50,S.initBattery-5);$('iV').textContent=S.initBattery;S.battery=S.initBattery;uB(S.initBattery);save()});$('iI').addEventListener('click',()=>{S.initBattery=Math.min(90,S.initBattery+5);$('iV').textContent=S.initBattery;save()});
+$('lTg').addEventListener('click',()=>{S.lowBatteryAlert=!S.lowBatteryAlert;$('lTg').classList.toggle('o');save()});$('wTg').addEventListener('click',()=>{S.weeklyReportOn=!S.weeklyReportOn;$('wTg').classList.toggle('o');save()});
+$('rD').addEventListener('click',()=>{S.resetTime=S.resetTime===0?6:0;const h=S.resetTime===0?'00:00':'06:00';$('rV').textContent=h;save()});$('rI').addEventListener('click',()=>{S.resetTime=S.resetTime===0?6:0;const h=S.resetTime===0?'00:00':'06:00';$('rV').textContent=h;save()});
+$('eBtn').addEventListener('click',exportCSV);$('cBtn').addEventListener('click',()=>{if(confirm('确定清除所有数据？此操作不可恢复。')){S.records=[];S.battery=S.initBattery;S.highToday=S.initBattery;S.lowToday=S.initBattery;S.alertedToday=false;save();uB(S.initBattery);rRL();updateTrends();showToast('所有数据已清除')}});
+document.querySelectorAll('.mtab-b').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.mtab-b').forEach(x=>x.classList.remove('a'));this.classList.add('a')})});
+$('mVd').addEventListener('click',()=>{let v=parseInt($('mV').textContent)||20;v=Math.max(5,v-5);$('mV').textContent=v});$('mVi').addEventListener('click',()=>{let v=parseInt($('mV').textContent)||20;v=Math.min(50,v+5);$('mV').textContent=v});
+$('mC').addEventListener('click',closeCustModal);$('mO').addEventListener('click',function(e){if(e.target===this)closeCustModal()});$('mK').addEventListener('click',confirmCustModal);
+const d=new Date;if(S.lastResetDate!==d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()){const targetH=S.resetTime===0?0:6;if(d.getHours()>=targetH){S.battery=S.initBattery;S.highToday=S.initBattery;S.lowToday=S.initBattery;S.alertedToday=false;S.lastResetDate=d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear();uB(S.battery,false);save()}}}
+document.addEventListener('DOMContentLoaded',init);
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+}
+</script></body></html>

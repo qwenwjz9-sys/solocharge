@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+<rect width="192" height="192" rx="32" fill="#0D0F14"/>
+<rect x="38.400000000000006" y="48.0" width="124.80000000000001" height="96.0" rx="7.68" fill="none" stroke="#C8B882" stroke-width="5.76"/>
+<rect x="163.2" y="72.96000000000001" width="9.600000000000001" height="46.08" rx="1.92" fill="#C8B882"/>
+<rect x="51.84" y="61.44" width="96.0" height="69.12" rx="3.84" fill="#C8B882"/>
+<circle cx="96.0" cy="134.39999999999998" r="15.36" fill="#C8B882"/>
+<text x="96.0" y="130.56" text-anchor="middle" fill="#0D0F14" font-size="38.400000000000006" font-weight="200" font-family="sans-serif">+</text>
+</svg>

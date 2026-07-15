@@ -1,0 +1,19 @@
+{
+  "name": "SoloCharge",
+  "short_name": "SoloCharge",
+  "description": "内向者的个人能量管理工具 — 安静陪伴，看见自己",
+  "start_url": "../index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0D0F14",
+  "theme_color": "#0D0F14",
+  "scope": "../",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
