@@ -49,13 +49,13 @@ body{height:100%;background:var(--bg);color:var(--tp);font-family:-apple-system,
 .n1{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
 .n2{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E")}
 .n3{background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E")}
-.shell{position:relative;width:393px;height:852px;margin:0 auto;background:var(--bg);overflow:hidden;border-radius:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.sb{position:absolute;top:0;left:0;right:0;z-index:100;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pm);font-size:12px;color:var(--ts)}
-.sb .t{font-weight:600;color:var(--tp)}
-.si{display:flex;gap:6px;align-items:center}
-.si svg{width:16px;height:16px;fill:var(--tp)}
-.ca{position:absolute;top:54px;bottom:80px;left:0;right:0;overflow:hidden}
-.pg{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:var(--s8) var(--pm) var(--s6);opacity:0;transform:translateY(12px);transition:opacity var(--d300) var(--ef),transform var(--d300) var(--ef);pointer-events:none}
+.shell{position:relative;width:100%;max-width:430px;height:100dvh;margin:0 auto;background:var(--bg);overflow:hidden;border-radius:0;box-shadow:none}
+
+
+
+
+.ca{position:absolute;top:0;bottom:80px;left:0;right:0;overflow:hidden}
+.pg{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:var(--s7) var(--pm) var(--s6);opacity:0;transform:translateY(12px);transition:opacity var(--d300) var(--ef),transform var(--d300) var(--ef);pointer-events:none}
 .pg.a{opacity:1;transform:translateY(0);pointer-events:auto}
 .pg::-webkit-scrollbar{width:0}
 .tb{position:absolute;bottom:0;left:0;right:0;z-index:100;height:80px;padding-bottom:var(--s5);background:var(--sf);border-top:1px solid var(--bs);display:flex;justify-content:space-around;align-items:center}
@@ -64,11 +64,11 @@ body{height:100%;background:var(--bg);color:var(--tp);font-family:-apple-system,
 .ti svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.5;fill:none}
 .ti.a{color:var(--ac)}
 .ti:active{opacity:.7}
-.bc{position:relative;height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);border-radius:var(--r16);margin-bottom:var(--s5);overflow:hidden;transition:background var(--d2s) ease;background:linear-gradient(135deg,#0D1A18 0%,#0D0F14 60%,#121420 100%)}.battery-svg-wrap{position:relative;z-index:2;filter:drop-shadow(0 4px 16px rgba(200,184,130,.2))}.battery-svg-wrap .bf{transition:width .6s cubic-bezier(.25,.46,.45,.94)}@keyframes cg{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes cw{0%,100%{opacity:0}20%,80%{opacity:.3}}
+.bc{position:relative;height:38vh;min-height:260px;max-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);border-radius:var(--r16);margin-bottom:var(--s5);overflow:hidden;transition:background var(--d2s) ease;background:linear-gradient(135deg,#0D1A18 0%,#0D0F14 60%,#121420 100%)}.battery-svg-wrap{position:relative;z-index:2;filter:drop-shadow(0 4px 16px rgba(200,184,130,.2))}.battery-svg-wrap svg{width:clamp(80px,20vw,120px);height:auto}.battery-svg-wrap .bf{transition:width .6s cubic-bezier(.25,.46,.45,.94)}@keyframes cg{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes cw{0%,100%{opacity:0}20%,80%{opacity:.3}}
 .bc .n3{z-index:1}
 .bg{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(80px);opacity:.12;transition:all var(--d2s) ease;top:10%;pointer-events:none}
 
-.bnw{position:relative;z-index:2;display:flex;align-items:baseline;gap:var(--s1);justify-content:center}.bn{font-family:"SF Pro Rounded","SF Pro Display",-apple-system,sans-serif;font-size:72px;line-height:80px;font-weight:200;letter-spacing:-2px;transition:color var(--d2s) ease}.bn{color:var(--ac)}
+.bnw{position:relative;z-index:2;display:flex;align-items:baseline;gap:var(--s1);justify-content:center}.bn{font-family:"SF Pro Rounded","SF Pro Display",-apple-system,sans-serif;font-size:clamp(48px,12vw,72px);line-height:1.1;font-weight:200;letter-spacing:-2px;transition:color var(--d2s) ease}.bn{color:var(--ac)}
 
 
 .bi{width:48px;height:24px;border:1.5px solid var(--ts);border-radius:4px;padding:2px;position:relative}
@@ -102,11 +102,11 @@ body{height:100%;background:var(--bg);color:var(--tp);font-family:-apple-system,
 .rm{font-size:12px;font-weight:300;color:var(--tt);margin-top:2px}
 .rv{font-size:17px;font-weight:300;text-align:right;flex-shrink:0;transition:transform var(--d300) var(--ef)}
 .rv.c{color:var(--cs)}.rv.d{color:var(--ds)}
-.rls{max-height:320px;overflow-y:auto}
+.rls{max-height:30vh;overflow-y:auto}
 .rls::-webkit-scrollbar{width:0}
 .so{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity var(--d300) var(--ef)}
 .so.o{opacity:1;pointer-events:auto}
-.bsh{position:fixed;bottom:0;left:0;right:0;z-index:201;height:65vh;background:var(--sf);border-radius:var(--r24) var(--r24) 0 0;transform:translateY(100%);transition:transform var(--d600) var(--ee);display:flex;flex-direction:column}
+.bsh{position:fixed;bottom:0;left:0;right:0;z-index:201;height:70vh;max-height:600px;background:var(--sf);border-radius:var(--r24) var(--r24) 0 0;transform:translateY(100%);transition:transform var(--d600) var(--ee);display:flex;flex-direction:column}
 .bsh .n2{z-index:-1;border-radius:var(--r24) var(--r24) 0 0}
 .bsh.o{transform:translateY(0)}
 .shw{display:flex;justify-content:center;padding:var(--s3) 0 var(--s2);flex-shrink:0}
@@ -213,7 +213,7 @@ body{height:100%;background:var(--bg);color:var(--tp);font-family:-apple-system,
 .cust-edit button{width:20px;height:20px;border-radius:50%;border:1px solid var(--bd);background:var(--el);color:var(--ts);cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center}
 </style></head><body>
 <div class="shell" id="app"><div class="n n1"></div>
-<div class="sb"><span class="t" id="st">9:41</span><div class="si"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="10" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 6.5h1.5A1.5 1.5 0 0115 8v0a1.5 1.5 0 01-1.5 1.5H12"/></svg><svg viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.2"/></svg></div></div>
+
 <div class="ca">
 <div class="pg a" id="pH"><div class="bc" id="bC"><div class="n3"></div><div class="bg" id="bG"></div><div class="battery-svg-wrap" id="bSw"><svg viewBox="0 0 96 48" width="96" height="48" class="battery-svg"><defs><linearGradient id="bg3d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.08)"/><stop offset="100%" stop-color="rgba(0,0,0,0.08)"/></linearGradient><linearGradient id="fg3d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.35)"/><stop offset="100%" stop-color="rgba(0,0,0,0.05)"/></linearGradient><clipPath id="bClip"><rect x="4" y="5" width="77" height="38" rx="5"/></clipPath></defs><path d="M84 16h6v16h-6" fill="none" stroke="var(--ts)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="2" y="2" width="82" height="44" rx="7" fill="var(--bg)" stroke="var(--ts)" stroke-width="1.5"/><rect x="3" y="3" width="80" height="42" rx="6" fill="url(#bg3d)"/><g clip-path="url(#bClip)"><rect class="bf" id="bF" x="4" y="5" width="54" height="38" rx="5" fill="var(--ac)"/><rect class="bf" x="4" y="5" width="54" height="38" rx="5" fill="url(#fg3d)"/><rect class="bf" x="4" y="5" width="54" height="38" rx="5" id="bChargeGlow" fill="var(--ac)" opacity="0"/></g><rect x="4" y="5" width="77" height="13" rx="5" fill="rgba(255,255,255,0.05)"/><line x1="7" y1="10" x2="78" y2="10" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/></svg></div><div class="bnw"><span class="bn" id="bN">72</span><span class="bpc">%</span></div><div class="br" id="bR"><span class="range-detail"><span><span class="lbl">H</span> <span id="hT">72</span>%</span><span><span class="lbl">L</span> <span id="lT">55</span>%</span></span></div></div>
 <div class="rs"><div class="rst">今日记录 <span class="count" id="rc">0 条</span></div><div class="rls" id="rL"><div class="es" id="eS"><div class="q">"安静是另一种力量。"</div><div>今天还没有记录</div></div></div></div>
